@@ -51,7 +51,7 @@ public class AddressController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Address> save(@RequestBody Address address) {
 		
-		if(AddressFieldsValidators.cepValidator(address.getCep()))
+		if(!AddressFieldsValidators.cepValidator(address.getCep()))
 			return new ResponseEntity<Address>(HttpStatus.BAD_REQUEST);
 		
 		Address requestedAddressByCep = CepApiConsumer.getAddressByPostalCode(address.getCep());
